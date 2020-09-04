@@ -18,8 +18,10 @@ def get_data_from_sql():
 def wrangle_telco():
     """
     Queries the telco_churn database
-    Returns a clean df with four columns:
-    customer_id(object), monthly_charges(float), tenure(int), total_charges(float)
+    Returns a clean df with six columns:
+    customer_id(object), monthly_charges(float), 
+    tenure(int), total_charges(float),
+    phone_service(object), internet_service_type_id(int)
     """
     df = get_data_from_sql()
     df.tenure.replace(0, 1, inplace=True)

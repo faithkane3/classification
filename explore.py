@@ -95,6 +95,10 @@ def telco_pie(df):
 
 
 def correlation_exploration(df, x_string, y_string):
+    '''
+    This nifty function takes in a df, a string for x variable,
+    and a string for y variable and displays their correlation.
+    '''
     r, p = stats.pearsonr(df[x_string], df[y_string])
     df.plot.scatter(x_string, y_string)
     plt.title(f"{x_string}'s Relationship with {y_string}")
@@ -104,6 +108,10 @@ def correlation_exploration(df, x_string, y_string):
 
 
 def tax_distribution_viz(df):
+    '''
+    This function takes in my Zillow df and plots the distribution
+    of the tax rate for Los Angeles, Orange, and Ventura counties.
+    '''
     los_angeles_tax_dist = df[df.county_name == "Los Angeles"].tax_rate
     orange_tax_dist = df[df.county_name == "Orange"].tax_rate
     ventura_tax_dist = df[df.county_name == "Ventura"].tax_rate
