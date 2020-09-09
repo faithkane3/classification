@@ -14,8 +14,8 @@ def get_connection(db, user=user, host=host, password=password):
     
 def new_titanic_data():
     '''
-    This function reads the titanic data from the Codeup db
-    into a df and returns the df.
+    This function reads the titanic data from the Codeup db into a df,
+    write it to a csv file, and returns the df.
     '''
     sql_query = 'SELECT * FROM passengers'
     df = pd.read_sql(sql_query, get_connection('titanic_db'))
@@ -36,6 +36,10 @@ def get_titanic_data(cached=False):
 ###################### Acquire Iris Data ######################
 
 def new_iris_data():
+    '''
+    This function reads the iris data from the Codeup db into a df,
+    writes it to a csv file, and returns the df.
+    '''
     sql_query = """
                 SELECT species_id,
                 species_name,
