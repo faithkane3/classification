@@ -3,7 +3,7 @@ import numpy as np
 import os
 from env import host, user, password
 
-###################### Acqur
+###################### Acquire Titanic Data ######################
 
 def get_connection(db, user=user, host=host, password=password):
     '''
@@ -22,13 +22,16 @@ def new_titanic_data():
     df.to_csv('titanic_df.csv')
     return df
 
-def get_titanic_data(cache=False):
+def get_titanic_data(cached=False):
     '''
-    This function reads in titanic df from Codeup database if cache == False
-    or if cache == True reads in titanic df from a csv file, returns df
+    This function reads in titanic data from Codeup database if cached == False 
+    or if cached == True reads in titanic df from a csv file, returns df
     '''
-    if cache or os.path.isfile('titanic_df.csv') == False:
+    if cached or os.path.isfile('titanic_df.csv') == False:
         df = new_titanic_data()
     else:
         df = pd.read_csv('titanic_df.csv', index_col=0)
     return df
+
+###################### Acquire Iris Data ######################
+
