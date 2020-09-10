@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+
 from darden_class_acquire import get_titanic_data, get_iris_data
 
 ###################### Prep Iris Data ######################
@@ -67,7 +70,7 @@ def impute_mean_age(train, validate, test):
 def prep_titanic(cached=True):
     '''
     This function reads titanic data into a df from a csv file.
-    Returns prepped () train, validate, and test dfs
+    Returns prepped train, validate, and test dfs
     '''
     # use my acquire function to read data into a df from a csv file
     df = get_titanic_data(cached)
@@ -85,7 +88,7 @@ def prep_titanic(cached=True):
     df = df.drop(columns='deck')
     
     # split data into train, validate, test dfs
-    train, validate, test = titanic_train_val_test_split(df)
+    train, validate, test = titanic_split(df)
     
     # impute mean of age into null values in age column
     train, validate, test = impute_mean_age(train, validate, test)
