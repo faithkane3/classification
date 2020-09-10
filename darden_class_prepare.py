@@ -62,3 +62,32 @@ def impute_mean_age(train, validate, test):
     test['age'] = imputer.transform(test[['age']])
     
     return train, validate, test
+
+
+def prep_titanic(cached=True):
+    '''
+    This function reads titanic data into a df from a csv file.
+    Returns prepped () train, validate, and test dfs
+    '''
+    # use my acquire function to read data into a df from a csv file
+    df = get_titanic_data(cached)
+    
+    # drop rows where embarked/embark town are null values
+    df = df[~df.embarked.isnull()]
+    
+    # encode embarked using dummy columns
+    titanic_dummies = pd.get_dummies(df.embarked, drop_first=True)
+    
+    # join dummy columns back to df
+    df = pd.concat([df, titanic_dummies], axis=1)
+    
+    # drop the deck column
+    df = df.drop(columns='deck')
+    
+    # split data into train, validate, test dfs
+    train, validate, test = titanic_train_val_test_split(df)
+    
+    # impute mean of age into null values in age column
+    train, validate, test = impute_mean_age(train, validate, test)
+    
+    return train, validate, test
