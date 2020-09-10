@@ -12,6 +12,8 @@ def get_connection(db, user=user, host=host, password=password):
     '''
     return f'mysql+pymysql://{user}:{password}@{host}/{db}'
     
+    
+    
 def new_titanic_data():
     '''
     This function reads the titanic data from the Codeup db into a df,
@@ -21,6 +23,8 @@ def new_titanic_data():
     df = pd.read_sql(sql_query, get_connection('titanic_db'))
     df.to_csv('titanic_df.csv')
     return df
+
+
 
 def get_titanic_data(cached=False):
     '''
@@ -54,6 +58,8 @@ def new_iris_data():
     df = pd.read_sql(sql_query, get_connection('iris_db'))
     df.to_csv('iris_df.csv')
     return df
+
+
 
 def get_iris_data(cached=False):
     '''
