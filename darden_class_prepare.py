@@ -19,3 +19,11 @@ def prep_iris(cached=True):
 
 ###################### Prep Titanic Data ######################
 
+def titanic_train_val_test_split(df):
+    train_validate, test = train_test_split(df, test_size=.2, 
+                                        random_state=123, 
+                                        stratify=df.survived)
+    train, validate = train_test_split(train_validate, test_size=.3, 
+                                   random_state=rand_state, 
+                                   stratify=train_validate.survived)
+    return train, validate, test
